@@ -1,1 +1,330 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <title>Einladungen</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital@0;1&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #f4f1e9;
+      color: #111;
+      font-family: "Libre Baskerville", serif;
+    }
+
+    .page {
+      width: min(1350px, 94vw);
+      margin: 0 auto;
+      padding: 45px 0 70px;
+    }
+
+    .spread {
+      display: grid;
+      grid-template-columns: 1.1fr 0.95fr;
+      gap: 40px;
+      min-height: 860px;
+    }
+
+    .left {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-left: 1px solid #111;
+      border-top: 1px solid #111;
+    }
+
+    .invite {
+      position: relative;
+      padding: 20px 18px 30px;
+      border-right: 1px solid #111;
+      min-height: 760px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .number {
+      font-family: "Libre Baskerville", serif;
+      font-size: clamp(90px, 10vw, 155px);
+      line-height: .9;
+      font-weight: 400;
+      margin: 0 0 10px;
+    }
+
+    .register {
+      font-family: "Oswald", sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .03em;
+      margin-bottom: 40px;
+    }
+
+    .title {
+      font-family: "Oswald", sans-serif;
+      font-size: clamp(27px, 3vw, 42px);
+      font-weight: 600;
+      line-height: 1.05;
+      text-transform: uppercase;
+      margin: 0 0 18px;
+    }
+
+    .description {
+      font-size: 14px;
+      line-height: 1.6;
+      margin: 0 0 20px;
+    }
+
+    .play {
+      border: none;
+      background: none;
+      padding: 0;
+      color: #111;
+      font-family: "Oswald", sans-serif;
+      font-size: 17px;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      text-align: left;
+    }
+
+    .play::before {
+      content: "▶";
+      margin-right: 8px;
+    }
+
+    .play.playing::before {
+      content: "■";
+    }
+
+    .play:hover {
+      font-style: italic;
+    }
+
+    audio {
+      display: none;
+    }
+
+    .right {
+      position: relative;
+      min-height: 760px;
+      overflow: hidden;
+      background: #111;
+    }
+
+    .right img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: grayscale(100%) contrast(1.15);
+    }
+
+    .side-note {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 84px;
+      height: 100%;
+      background: #f4f1e9;
+      border-left: 1px solid #111;
+      padding: 16px 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .side-note span {
+      font-family: "Oswald", sans-serif;
+      font-size: 12px;
+      line-height: 1.2;
+      text-transform: uppercase;
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      letter-spacing: .05em;
+    }
+
+    .big-one {
+      font-family: "Libre Baskerville", serif;
+      font-size: 88px;
+      line-height: .8;
+      align-self: center;
+    }
+
+    .footer {
+      margin-top: 28px;
+      padding-top: 14px;
+      border-top: 1px solid #111;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      font-family: "Oswald", sans-serif;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .09em;
+    }
+
+    @media (max-width: 900px) {
+      .spread {
+        grid-template-columns: 1fr;
+      }
+
+      .left {
+        grid-template-columns: 1fr;
+      }
+
+      .invite {
+        min-height: auto;
+        border-bottom: 1px solid #111;
+      }
+
+      .right {
+        min-height: 520px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<main class="page">
+
+  <section class="spread">
+
+    <div class="left">
+
+      <article class="invite">
+        <div>
+          <div class="number">1</div>
+          <div class="register">Privat</div>
+
+          <h2 class="title">Grillparty</h2>
+
+          <p class="description">
+            Eine private Einladung an Freunde.
+          </p>
+        </div>
+
+        <div>
+          <button class="play" data-audio="einladung1">Hören</button>
+          <audio id="einladung1" src="Einladung_1.mp3"></audio>
+        </div>
+      </article>
+
+      <article class="invite">
+        <div>
+          <div class="number">2</div>
+          <div class="register">Halbformell</div>
+
+          <h2 class="title">KI-Symposium</h2>
+
+          <p class="description">
+            Eine Einladung zu einer universitären Veranstaltung.
+          </p>
+        </div>
+
+        <div>
+          <button class="play" data-audio="einladung2">Hören</button>
+          <audio id="einladung2" src="Einladung_2.mp3"></audio>
+        </div>
+      </article>
+
+      <article class="invite">
+        <div>
+          <div class="number">3</div>
+          <div class="register">Formell</div>
+
+          <h2 class="title">Konsultreffen</h2>
+
+          <p class="description">
+            Eine formelle Einladung zu einem offiziellen Treffen.
+          </p>
+        </div>
+
+        <div>
+          <button class="play" data-audio="einladung3">Hören</button>
+          <audio id="einladung3" src="Einladung_3.mp3"></audio>
+        </div>
+      </article>
+
+    </div>
+
+
+    <div class="right">
+
+      <img src="Party.png" alt="Einladung und gesellschaftliches Treffen">
+
+      <div class="side-note">
+        <span>Schreiben · Einladung</span>
+        <div class="big-one">1</div>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <footer class="footer">
+    <span>Deutsch · Schreibkurs</span>
+    <span>02 · Einladung</span>
+  </footer>
+
+</main>
+
+
+<script>
+  const buttons = document.querySelectorAll(".play");
+  const audios = document.querySelectorAll("audio");
+
+  buttons.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+      const audio = document.getElementById(button.dataset.audio);
+
+      audios.forEach(otherAudio => {
+        if (otherAudio !== audio) {
+          otherAudio.pause();
+          otherAudio.currentTime = 0;
+        }
+      });
+
+      buttons.forEach(otherButton => {
+        if (otherButton !== button) {
+          otherButton.classList.remove("playing");
+          otherButton.textContent = "Hören";
+        }
+      });
+
+      if (audio.paused) {
+        audio.play();
+        button.classList.add("playing");
+        button.textContent = "Stop";
+      } else {
+        audio.pause();
+        button.classList.remove("playing");
+        button.textContent = "Hören";
+      }
+
+      audio.onended = () => {
+        button.classList.remove("playing");
+        button.textContent = "Hören";
+      };
+
+    });
+
+  });
+</script>
+
+</body>
+</html>
