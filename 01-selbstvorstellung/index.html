@@ -5,43 +5,325 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Wer ist es?</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital@0;1&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #f4f1e9;
+      color: #111;
+      font-family: "Libre Baskerville", serif;
+    }
+
+    .page {
+      width: min(1200px, 92vw);
+      margin: 0 auto;
+      padding: 60px 0 90px;
+    }
+
+    .header {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      min-height: 430px;
+      border-bottom: 1px solid #111;
+      margin-bottom: 55px;
+    }
+
+    .title {
+      grid-column: 1 / 6;
+      align-self: start;
+
+      margin: 0;
+
+      font-family: "Oswald", sans-serif;
+      font-size: clamp(85px, 13vw, 180px);
+      font-weight: 700;
+      line-height: 0.78;
+      letter-spacing: -0.055em;
+      text-transform: uppercase;
+    }
+
+    .intro {
+      grid-column: 8 / 13;
+      align-self: end;
+      padding-bottom: 42px;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    .intro strong {
+      font-family: "Oswald", sans-serif;
+      text-transform: uppercase;
+      font-size: 21px;
+      letter-spacing: .04em;
+    }
+
+    .people {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      column-gap: 22px;
+      row-gap: 70px;
+    }
+
+    .person {
+      position: relative;
+      min-height: 200px;
+      padding-top: 20px;
+      border-top: 1px solid #111;
+    }
+
+    .person:nth-child(1) {
+      grid-column: 1 / 7;
+    }
+
+    .person:nth-child(2) {
+      grid-column: 8 / 13;
+      margin-top: 100px;
+    }
+
+    .person:nth-child(3) {
+      grid-column: 2 / 6;
+    }
+
+    .person:nth-child(4) {
+      grid-column: 7 / 13;
+      margin-top: 60px;
+    }
+
+    .person:nth-child(5) {
+      grid-column: 1 / 5;
+    }
+
+    .person:nth-child(6) {
+      grid-column: 7 / 12;
+      margin-top: 110px;
+    }
+
+    .number {
+      font-family: "Oswald", sans-serif;
+      font-weight: 700;
+      font-size: 92px;
+      line-height: .85;
+      margin-bottom: 25px;
+    }
+
+    .name {
+      margin: 0;
+
+      font-family: "Oswald", sans-serif;
+      font-size: clamp(42px, 6vw, 78px);
+      font-weight: 600;
+      line-height: .95;
+      text-transform: uppercase;
+    }
+
+    .play {
+      margin-top: 24px;
+      padding: 0;
+      border: none;
+      background: none;
+
+      font-family: "Oswald", sans-serif;
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: .08em;
+
+      cursor: pointer;
+      color: #111;
+    }
+
+    .play:hover {
+      font-style: italic;
+    }
+
+    .play::before {
+      content: "▶";
+      margin-right: 10px;
+    }
+
+    .play.playing::before {
+      content: "■";
+    }
+
+    .footer {
+      margin-top: 100px;
+      padding-top: 20px;
+      border-top: 1px solid #111;
+
+      font-family: "Oswald", sans-serif;
+      font-size: 13px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    audio {
+      display: none;
+    }
+
+    @media (max-width: 700px) {
+
+      .header {
+        display: block;
+        min-height: auto;
+        padding-bottom: 35px;
+      }
+
+      .title {
+        margin-bottom: 70px;
+      }
+
+      .intro {
+        max-width: 420px;
+      }
+
+      .people {
+        display: block;
+      }
+
+      .person,
+      .person:nth-child(n) {
+        margin: 0 0 70px;
+        min-height: auto;
+      }
+
+      .number {
+        font-size: 70px;
+      }
+    }
+
+  </style>
 </head>
 
 <body>
 
-  <h1>Wer ist es?</h1>
+<main class="page">
 
-  <p>Hört euch die Selbstvorstellungen an und ergänzt die fehlenden Informationen.</p>
+  <header class="header">
 
-  <h2>Jürgen</h2>
-  <audio controls>
-    <source src="Jürgen.mp3" type="audio/mpeg">
-  </audio>
+    <h1 class="title">
+      Wer<br>
+      ist<br>
+      es?
+    </h1>
 
-  <h2>Anke</h2>
-  <audio controls>
-    <source src="Anke.mp3" type="audio/mpeg">
-  </audio>
+    <div class="intro">
+      <strong>Hört genau hin.</strong>
+      <p>
+        Hört euch die sechs Selbstvorstellungen an
+        und ergänzt die fehlenden Informationen
+        auf eurem Arbeitsblatt.
+      </p>
+    </div>
 
-  <h2>Lena</h2>
-  <audio controls>
-    <source src="Lena.mp3" type="audio/mpeg">
-  </audio>
+  </header>
 
-  <h2>Marcel</h2>
-  <audio controls>
-    <source src="Marcel.mp3" type="audio/mpeg">
-  </audio>
 
-  <h2>Elyas</h2>
-  <audio controls>
-    <source src="Elyas.mp3" type="audio/mpeg">
-  </audio>
+  <section class="people">
 
-  <h2>Pamela</h2>
-  <audio controls>
-    <source src="Pamela.mp3" type="audio/mpeg">
-  </audio>
+    <article class="person">
+      <div class="number">01</div>
+      <h2 class="name">Jürgen</h2>
+      <button class="play" data-audio="juergen">Hören</button>
+      <audio id="juergen" src="Jürgen.mp3"></audio>
+    </article>
+
+    <article class="person">
+      <div class="number">02</div>
+      <h2 class="name">Anke</h2>
+      <button class="play" data-audio="anke">Hören</button>
+      <audio id="anke" src="Anke.mp3"></audio>
+    </article>
+
+    <article class="person">
+      <div class="number">03</div>
+      <h2 class="name">Lena</h2>
+      <button class="play" data-audio="lena">Hören</button>
+      <audio id="lena" src="Lena.mp3"></audio>
+    </article>
+
+    <article class="person">
+      <div class="number">04</div>
+      <h2 class="name">Marcel</h2>
+      <button class="play" data-audio="marcel">Hören</button>
+      <audio id="marcel" src="Marcel.mp3"></audio>
+    </article>
+
+    <article class="person">
+      <div class="number">05</div>
+      <h2 class="name">Elyas</h2>
+      <button class="play" data-audio="elyas">Hören</button>
+      <audio id="elyas" src="Elyas.mp3"></audio>
+    </article>
+
+    <article class="person">
+      <div class="number">06</div>
+      <h2 class="name">Pamela</h2>
+      <button class="play" data-audio="pamela">Hören</button>
+      <audio id="pamela" src="Pamela.mp3"></audio>
+    </article>
+
+  </section>
+
+  <footer class="footer">
+    Deutsch · Schreibkurs · Selbstvorstellung
+  </footer>
+
+</main>
+
+
+<script>
+
+  const buttons = document.querySelectorAll(".play");
+  const audios = document.querySelectorAll("audio");
+
+  buttons.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+      const audio = document.getElementById(button.dataset.audio);
+
+      audios.forEach(otherAudio => {
+        if (otherAudio !== audio) {
+          otherAudio.pause();
+          otherAudio.currentTime = 0;
+        }
+      });
+
+      buttons.forEach(otherButton => {
+        if (otherButton !== button) {
+          otherButton.classList.remove("playing");
+          otherButton.textContent = "Hören";
+        }
+      });
+
+      if (audio.paused) {
+        audio.play();
+        button.classList.add("playing");
+        button.textContent = "Stop";
+      } else {
+        audio.pause();
+        button.classList.remove("playing");
+        button.textContent = "Hören";
+      }
+
+      audio.onended = () => {
+        button.classList.remove("playing");
+        button.textContent = "Hören";
+      };
+
+    });
+
+  });
+
+</script>
 
 </body>
 </html>
