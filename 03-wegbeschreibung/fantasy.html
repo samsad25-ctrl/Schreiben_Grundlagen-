@@ -1,1 +1,691 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <title>Fantasy · Wegbeschreibung</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital@0;1&family=Oswald:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #f4f1e9;
+      color: #111;
+      font-family: "Libre Baskerville", serif;
+    }
+
+    .page {
+      width: min(1380px, 94vw);
+      margin: 0 auto;
+      padding: 42px 0 60px;
+    }
+
+
+    /* =========================
+       HEADER
+    ========================= */
+
+    .header {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 20px;
+
+      min-height: 330px;
+      padding-bottom: 42px;
+
+      border-bottom: 1px solid #111;
+    }
+
+    .title {
+      grid-column: 1 / 7;
+
+      margin: 0;
+
+      font-family: "Oswald", sans-serif;
+      font-size: clamp(78px, 10vw, 145px);
+      font-weight: 700;
+      line-height: .78;
+      letter-spacing: -.055em;
+      text-transform: uppercase;
+    }
+
+    .intro {
+      grid-column: 8 / 13;
+      align-self: end;
+
+      padding-bottom: 8px;
+
+      font-size: 17px;
+      line-height: 1.65;
+    }
+
+    .intro-label {
+      display: block;
+      margin-bottom: 14px;
+
+      font-family: "Oswald", sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+
+    /* =========================
+       MAP
+    ========================= */
+
+    .map-section {
+      padding: 28px 0 36px;
+      border-bottom: 1px solid #111;
+    }
+
+    .map-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+
+      margin-bottom: 18px;
+
+      font-family: "Oswald", sans-serif;
+      text-transform: uppercase;
+    }
+
+    .map-label strong {
+      font-size: 22px;
+      letter-spacing: .04em;
+    }
+
+    .map-label span {
+      font-size: 12px;
+      letter-spacing: .1em;
+    }
+
+    .map-frame {
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .map-frame img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+
+    /* =========================
+       FANTASY GROUP
+    ========================= */
+
+    .group-section {
+      padding-top: 34px;
+    }
+
+    .group-image {
+      width: 100%;
+      border-bottom: 1px solid #111;
+    }
+
+    .group-image img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+
+    /* =========================
+       CHARACTER CONTROLS
+    ========================= */
+
+    .characters {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .character {
+      min-height: 170px;
+
+      padding: 20px 18px 24px;
+
+      border-right: 1px solid #111;
+    }
+
+    .character:first-child {
+      border-left: 1px solid #111;
+    }
+
+    .character-number {
+      margin-bottom: 26px;
+
+      font-family: "Libre Baskerville", serif;
+      font-size: 20px;
+      line-height: 1;
+    }
+
+    .character-name {
+      margin: 0 0 24px;
+
+      font-family: "Oswald", sans-serif;
+      font-size: clamp(26px, 2.7vw, 42px);
+      font-weight: 600;
+      line-height: .95;
+      text-transform: uppercase;
+    }
+
+
+    /* =========================
+       AUDIO
+    ========================= */
+
+    .play {
+      padding: 0;
+
+      border: none;
+      background: none;
+
+      color: #111;
+
+      font-family: "Oswald", sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .play::before {
+      content: "▶";
+      margin-right: 9px;
+    }
+
+    .play.playing::before {
+      content: "■";
+    }
+
+    .play:hover {
+      font-style: italic;
+    }
+
+    audio {
+      display: none;
+    }
+
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+
+      margin-top: 24px;
+      padding-top: 14px;
+
+      border-top: 1px solid #111;
+
+      font-family: "Oswald", sans-serif;
+      font-size: 12px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+
+    /* =========================
+       TABLET
+    ========================= */
+
+    @media (max-width: 900px) {
+
+      .header {
+        min-height: 280px;
+      }
+
+      .title {
+        grid-column: 1 / 8;
+      }
+
+      .intro {
+        grid-column: 8 / 13;
+      }
+
+      .characters {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .character:nth-child(2) {
+        border-right: 1px solid #111;
+      }
+
+      .character:nth-child(3) {
+        border-left: 1px solid #111;
+        border-top: 1px solid #111;
+      }
+
+      .character:nth-child(4) {
+        border-top: 1px solid #111;
+      }
+    }
+
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 560px) {
+
+      .page {
+        width: 92vw;
+        padding-top: 28px;
+      }
+
+      .header {
+        display: block;
+
+        min-height: auto;
+        padding-bottom: 34px;
+      }
+
+      .title {
+        margin-bottom: 55px;
+        font-size: 72px;
+      }
+
+      .intro {
+        max-width: 100%;
+      }
+
+      .map-label {
+        display: block;
+      }
+
+      .map-label span {
+        display: block;
+        margin-top: 8px;
+      }
+
+      .characters {
+        display: block;
+      }
+
+      .character {
+        border-left: 1px solid #111;
+        border-right: 1px solid #111;
+        border-top: 1px solid #111;
+      }
+
+      .character:first-child {
+        border-top: none;
+      }
+
+      .character-name {
+        font-size: 34px;
+      }
+    }
+
+  </style>
+</head>
+
+
+<body>
+
+<main class="page">
+
+
+  <!-- HEADER -->
+
+  <header class="header">
+
+    <h1 class="title">
+      Wo<br>
+      geht's<br>
+      lang?
+    </h1>
+
+    <div class="intro">
+
+      <span class="intro-label">
+        Aufgabe
+      </span>
+
+      Bitte helft den vier Personen,
+      ihren Wunschort zu finden.
+      Hört genau zu und verfolgt
+      den Weg auf der Karte.
+      Viel Erfolg!
+
+    </div>
+
+  </header>
+
+
+  <!-- MAP -->
+
+  <section class="map-section">
+
+    <div class="map-label">
+
+      <strong>
+        Fantasy-Stadtplan
+      </strong>
+
+      <span>
+        Hören · Orientieren · Verfolgen
+      </span>
+
+    </div>
+
+    <div class="map-frame">
+
+      <img
+        src="Fantasy_Stadtplan.png"
+        alt="Fantasy-Stadtplan für die Wegbeschreibung"
+      >
+
+    </div>
+
+  </section>
+
+
+  <!-- GROUP -->
+
+  <section class="group-section">
+
+    <div class="group-image">
+
+      <img
+        src="Gruppe_Fantasy.png"
+        alt="Zanthia, Prinz Gernegroß, Rinzwind und Gunilla"
+      >
+
+    </div>
+
+
+    <!-- CONTROLS -->
+
+    <div class="characters">
+
+
+      <!-- ZANTHIA -->
+
+      <article class="character">
+
+        <div class="character-number">
+          01
+        </div>
+
+        <h2 class="character-name">
+          Zanthia
+        </h2>
+
+        <button
+          class="play"
+          type="button"
+          data-audio="zanthia"
+        >
+          Hören
+        </button>
+
+        <audio
+          id="zanthia"
+          preload="metadata"
+          src="Zanthia.mp3"
+        ></audio>
+
+      </article>
+
+
+      <!-- PRINZ -->
+
+      <article class="character">
+
+        <div class="character-number">
+          02
+        </div>
+
+        <h2 class="character-name">
+          Gernegroß
+        </h2>
+
+        <button
+          class="play"
+          type="button"
+          data-audio="prinz"
+        >
+          Hören
+        </button>
+
+        <audio
+          id="prinz"
+          preload="metadata"
+          src="Prinz.mp3"
+        ></audio>
+
+      </article>
+
+
+      <!-- RINZWIND -->
+
+      <article class="character">
+
+        <div class="character-number">
+          03
+        </div>
+
+        <h2 class="character-name">
+          Rinzwind
+        </h2>
+
+        <button
+          class="play"
+          type="button"
+          data-audio="rinze"
+        >
+          Hören
+        </button>
+
+        <audio
+          id="rinze"
+          preload="metadata"
+          src="Rinze.mp3"
+        ></audio>
+
+      </article>
+
+
+      <!-- GUNILLA -->
+
+      <article class="character">
+
+        <div class="character-number">
+          04
+        </div>
+
+        <h2 class="character-name">
+          Gunilla
+        </h2>
+
+        <button
+          class="play"
+          type="button"
+          data-audio="gunilla"
+        >
+          Hören
+        </button>
+
+        <audio
+          id="gunilla"
+          preload="metadata"
+          src="Gunilla.mp3"
+        ></audio>
+
+      </article>
+
+    </div>
+
+  </section>
+
+
+  <!-- FOOTER -->
+
+  <footer class="footer">
+
+    <span>
+      Deutsch · Schreibkurs
+    </span>
+
+    <span>
+      03 · Wegbeschreibung · Fantasy
+    </span>
+
+  </footer>
+
+
+</main>
+
+
+<script>
+
+  const buttons =
+    document.querySelectorAll(".play");
+
+  const audios =
+    document.querySelectorAll("audio");
+
+
+  buttons.forEach(button => {
+
+    button.addEventListener(
+      "click",
+      async () => {
+
+        const audio =
+          document.getElementById(
+            button.dataset.audio
+          );
+
+        if (!audio) {
+          return;
+        }
+
+
+        /* Andere Audios stoppen */
+
+        audios.forEach(otherAudio => {
+
+          if (otherAudio !== audio) {
+
+            otherAudio.pause();
+            otherAudio.currentTime = 0;
+
+          }
+
+        });
+
+
+        /* Andere Buttons zurücksetzen */
+
+        buttons.forEach(otherButton => {
+
+          if (otherButton !== button) {
+
+            otherButton.classList.remove(
+              "playing"
+            );
+
+            otherButton.textContent =
+              "Hören";
+
+          }
+
+        });
+
+
+        /* Aktuelles Audio */
+
+        if (audio.paused) {
+
+          try {
+
+            await audio.play();
+
+            button.classList.add(
+              "playing"
+            );
+
+            button.textContent =
+              "Stop";
+
+          } catch (error) {
+
+            console.error(
+              "Audio konnte nicht abgespielt werden:",
+              error
+            );
+
+          }
+
+        } else {
+
+          audio.pause();
+
+          button.classList.remove(
+            "playing"
+          );
+
+          button.textContent =
+            "Hören";
+
+        }
+
+      }
+    );
+
+
+    /* Nach Ende zurücksetzen */
+
+    const audio =
+      document.getElementById(
+        button.dataset.audio
+      );
+
+    if (audio) {
+
+      audio.addEventListener(
+        "ended",
+        () => {
+
+          button.classList.remove(
+            "playing"
+          );
+
+          button.textContent =
+            "Hören";
+
+        }
+      );
+
+    }
+
+  });
+
+</script>
+
+</body>
+</html>
