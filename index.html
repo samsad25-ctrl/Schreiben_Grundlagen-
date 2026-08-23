@@ -8,9 +8,14 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital@0;1&family=Oswald:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
 
   <style>
+
     * {
       box-sizing: border-box;
     }
@@ -19,119 +24,192 @@
       margin: 0;
       background: #f4f1e9;
       color: #111;
-      font-family: "Oswald", sans-serif;
+      font-family: "Libre Baskerville", serif;
     }
 
-    main {
+    .page {
       width: min(1200px, 92vw);
       margin: 0 auto;
-      padding: 60px 0 80px;
+      padding: 55px 0 70px;
     }
 
-    header {
-      min-height: 320px;
-      border-bottom: 1px solid #111;
+    .header {
+      min-height: 350px;
       display: flex;
       align-items: flex-end;
-      padding-bottom: 35px;
+      padding-bottom: 42px;
+      border-bottom: 1px solid #111;
     }
 
     h1 {
       margin: 0;
-      font-size: clamp(70px, 11vw, 150px);
-      line-height: .85;
-      letter-spacing: -.04em;
+
+      font-family: "Oswald", sans-serif;
+      font-size: clamp(78px, 11vw, 155px);
+      font-weight: 700;
+      line-height: .82;
+      letter-spacing: -.045em;
       text-transform: uppercase;
     }
 
-    .nav {
-      margin-top: 60px;
+    .intro {
+      max-width: 620px;
+      margin: 45px 0 70px;
+
+      font-size: 17px;
+      line-height: 1.7;
+    }
+
+    .course {
+      border-top: 1px solid #111;
     }
 
     .item {
       display: grid;
-      grid-template-columns: 120px 1fr auto;
-      align-items: center;
+      grid-template-columns: 100px 1fr;
       gap: 30px;
+      align-items: baseline;
 
-      padding: 30px 0;
+      padding: 25px 0;
       border-bottom: 1px solid #111;
-
-      color: #111;
-      text-decoration: none;
     }
 
     .number {
       font-family: "Libre Baskerville", serif;
-      font-size: 65px;
+      font-size: 48px;
       line-height: 1;
     }
 
-    .title {
-      font-size: clamp(28px, 4vw, 52px);
+    .topic {
+      font-family: "Oswald", sans-serif;
+      font-size: clamp(27px, 4vw, 48px);
       font-weight: 600;
+      line-height: 1;
       text-transform: uppercase;
     }
 
-    .arrow {
-      font-size: 35px;
-    }
-
-    .item:hover .title {
+    .special .topic {
+      font-family: "Libre Baskerville", serif;
+      font-size: clamp(22px, 3vw, 36px);
       font-style: italic;
+      font-weight: 400;
+      text-transform: none;
     }
 
     footer {
-      margin-top: 80px;
+      margin-top: 70px;
       padding-top: 15px;
       border-top: 1px solid #111;
+
+      display: flex;
+      justify-content: space-between;
+
+      font-family: "Oswald", sans-serif;
       font-size: 12px;
-      letter-spacing: .12em;
+      letter-spacing: .1em;
       text-transform: uppercase;
     }
 
-    @media (max-width: 650px) {
+    @media (max-width: 600px) {
+
       .item {
-        grid-template-columns: 65px 1fr auto;
-        gap: 15px;
+        grid-template-columns: 60px 1fr;
+        gap: 18px;
       }
 
       .number {
-        font-size: 42px;
+        font-size: 34px;
       }
+
     }
+
   </style>
 </head>
 
 <body>
 
-<main>
+<main class="page">
 
-  <header>
+  <header class="header">
+
     <h1>
       Schreiben<br>
       Grundlagen
     </h1>
+
   </header>
 
-  <nav class="nav">
 
-    <a class="item" href="01-selbstvorstellung/">
-      <span class="number">01</span>
-      <span class="title">Selbstvorstellung</span>
-      <span class="arrow">→</span>
-    </a>
+  <div class="intro">
 
-    <a class="item" href="02-einladung/">
-      <span class="number">02</span>
-      <span class="title">Einladung</span>
-      <span class="arrow">→</span>
-    </a>
+    In diesem Kurs beschäftigen wir uns mit verschiedenen
+    grundlegenden Textsorten des Deutschen. Im Mittelpunkt
+    stehen Aufbau, sprachliche Gestaltung und die praktische
+    Anwendung beim Schreiben.
 
-  </nav>
+  </div>
+
+
+  <section class="course">
+
+    <div class="item special">
+      <div class="number">00</div>
+      <div class="topic">Einführung</div>
+    </div>
+
+    <div class="item">
+      <div class="number">01</div>
+      <div class="topic">Selbstvorstellung</div>
+    </div>
+
+    <div class="item">
+      <div class="number">02</div>
+      <div class="topic">Einladung</div>
+    </div>
+
+    <div class="item">
+      <div class="number">03</div>
+      <div class="topic">Wegbeschreibung</div>
+    </div>
+
+    <div class="item">
+      <div class="number">04</div>
+      <div class="topic">Gegenstandsbeschreibung</div>
+    </div>
+
+    <div class="item">
+      <div class="number">05</div>
+      <div class="topic">Vorgangsbeschreibung</div>
+    </div>
+
+    <div class="item">
+      <div class="number">06</div>
+      <div class="topic">Personenbeschreibung</div>
+    </div>
+
+    <div class="item">
+      <div class="number">07</div>
+      <div class="topic">Nacherzählung</div>
+    </div>
+
+    <div class="item">
+      <div class="number">08</div>
+      <div class="topic">Bildergeschichte</div>
+    </div>
+
+    <div class="item special">
+      <div class="number">—</div>
+      <div class="topic">Zwischenprüfung · Wiederholung · Abschlussprüfung</div>
+    </div>
+
+  </section>
+
 
   <footer>
-    Deutsch · Schreibkurs · SZTU
+
+    <span>Deutsch · Schreibkurs</span>
+    <span>SZTU</span>
+
   </footer>
 
 </main>
