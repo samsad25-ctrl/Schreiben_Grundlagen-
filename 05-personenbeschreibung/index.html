@@ -1,1 +1,869 @@
+<!DOCTYPE html>
+<html lang="de">
 
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Personenbeschreibung</title>
+
+  <style>
+
+    /* =========================================
+       GRUNDLAYOUT
+       ========================================= */
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #e8e0d2;
+      color: #171717;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .page {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 50px 0 70px;
+    }
+
+
+    /* =========================================
+       KOPF
+       ========================================= */
+
+    header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 30px;
+      align-items: end;
+
+      padding-bottom: 25px;
+      margin-bottom: 35px;
+
+      border-bottom: 3px solid #171717;
+    }
+
+    .title {
+      margin: 0;
+
+      font-family: "Arial Narrow", Arial, sans-serif;
+      font-size: clamp(4rem, 10vw, 8rem);
+      font-weight: 900;
+      line-height: 0.78;
+      letter-spacing: -0.05em;
+
+      text-transform: uppercase;
+    }
+
+    .chapter {
+      text-align: right;
+    }
+
+    .chapter-number {
+      font-family: Georgia, serif;
+      font-size: 5rem;
+      line-height: 1;
+    }
+
+    .chapter-name {
+      margin-top: 8px;
+
+      font-size: 0.78rem;
+      font-weight: bold;
+      letter-spacing: 0.12em;
+
+      text-transform: uppercase;
+    }
+
+    .intro {
+      max-width: 650px;
+      margin: 0 0 45px;
+
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+
+    /* =========================================
+       PERSONEN
+       ========================================= */
+
+    .person {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+      gap: 38px;
+
+      margin-bottom: 55px;
+      padding-bottom: 55px;
+
+      border-bottom: 1px solid #171717;
+    }
+
+    .person:last-child {
+      margin-bottom: 0;
+    }
+
+
+    /* =========================================
+       BILD
+       ========================================= */
+
+    .image-wrap {
+      position: relative;
+      background: #d7cfc1;
+      overflow: hidden;
+    }
+
+    .image-wrap img {
+      width: 100%;
+      height: 560px;
+
+      display: block;
+      object-fit: contain;
+      object-position: center;
+
+      filter: grayscale(100%);
+    }
+
+    .image-number {
+      position: absolute;
+      left: 16px;
+      bottom: 12px;
+
+      font-family: Georgia, serif;
+      font-size: 3.5rem;
+      line-height: 1;
+
+      color: #171717;
+    }
+
+
+    /* =========================================
+       TEXTBEREICH
+       ========================================= */
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .eyebrow {
+      margin-bottom: 8px;
+
+      font-size: 0.72rem;
+      font-weight: bold;
+      letter-spacing: 0.14em;
+
+      text-transform: uppercase;
+    }
+
+    h2 {
+      margin: 0 0 22px;
+
+      font-family: "Arial Narrow", Arial, sans-serif;
+      font-size: clamp(2.3rem, 5vw, 4rem);
+      line-height: 0.95;
+
+      text-transform: uppercase;
+    }
+
+    .instruction {
+      max-width: 440px;
+      margin: 0 0 28px;
+
+      font-size: 1rem;
+      line-height: 1.55;
+    }
+
+
+    /* =========================================
+       AUDIO PLAYER
+       ========================================= */
+
+    .player {
+      max-width: 470px;
+      margin-top: 5px;
+    }
+
+    .controls {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 8px;
+
+      margin-bottom: 18px;
+    }
+
+    button {
+      min-height: 46px;
+      padding: 10px 15px;
+
+      border: 1.5px solid #171717;
+      border-radius: 0;
+
+      background: transparent;
+      color: #171717;
+
+      font: inherit;
+      font-size: 0.88rem;
+      font-weight: bold;
+
+      cursor: pointer;
+      transition:
+        background 0.15s ease,
+        color 0.15s ease;
+    }
+
+    button:hover {
+      background: #171717;
+      color: #e8e0d2;
+    }
+
+    button:active {
+      transform: translateY(1px);
+    }
+
+    .play {
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+
+    /* =========================================
+       FORTSCHRITTSLEISTE
+       ========================================= */
+
+    .progress {
+      width: 100%;
+      height: 4px;
+
+      margin: 0;
+
+      appearance: none;
+      -webkit-appearance: none;
+
+      background: #aaa397;
+      outline: none;
+
+      cursor: pointer;
+    }
+
+    .progress::-webkit-slider-thumb {
+      width: 17px;
+      height: 17px;
+
+      appearance: none;
+      -webkit-appearance: none;
+
+      border: 2px solid #171717;
+      border-radius: 50%;
+
+      background: #e8e0d2;
+      cursor: pointer;
+    }
+
+    .progress::-moz-range-thumb {
+      width: 14px;
+      height: 14px;
+
+      border: 2px solid #171717;
+      border-radius: 50%;
+
+      background: #e8e0d2;
+      cursor: pointer;
+    }
+
+    .time {
+      display: flex;
+      justify-content: space-between;
+
+      margin-top: 9px;
+
+      font-size: 0.75rem;
+      font-variant-numeric: tabular-nums;
+    }
+
+
+    /* =========================================
+       KLEINE HILFE
+       ========================================= */
+
+    .hint {
+      margin-top: 28px;
+      padding-top: 15px;
+
+      border-top: 1px solid #171717;
+
+      font-size: 0.78rem;
+      line-height: 1.5;
+    }
+
+    .hint strong {
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+
+    /* =========================================
+       MOBILE
+       ========================================= */
+
+    @media (max-width: 760px) {
+
+      .page {
+        width: min(100% - 26px, 600px);
+        padding-top: 28px;
+      }
+
+      header {
+        grid-template-columns: 1fr;
+      }
+
+      .chapter {
+        text-align: left;
+      }
+
+      .chapter-number {
+        font-size: 3.5rem;
+      }
+
+      .person {
+        grid-template-columns: 1fr;
+        gap: 25px;
+      }
+
+      .image-wrap img {
+        height: auto;
+        max-height: 650px;
+      }
+
+      .content {
+        display: block;
+      }
+
+    }
+
+
+    @media (max-width: 430px) {
+
+      .controls {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .play {
+        grid-column: 1 / -1;
+        grid-row: 1;
+      }
+
+      .back {
+        grid-column: 1;
+      }
+
+      .forward {
+        grid-column: 2;
+      }
+
+    }
+
+  </style>
+</head>
+
+
+<body>
+
+  <main class="page">
+
+    <!-- =====================================
+         KOPF
+         ===================================== -->
+
+    <header>
+
+      <h1 class="title">
+        WER<br>
+        IST<br>
+        DAS?
+      </h1>
+
+      <div class="chapter">
+
+        <div class="chapter-number">05</div>
+
+        <div class="chapter-name">
+          Personenbeschreibung
+        </div>
+
+      </div>
+
+    </header>
+
+
+    <p class="intro">
+      Hört euch die beiden Personenbeschreibungen an.
+      Ergänzt die zehn fehlenden Informationen auf eurem Arbeitsblatt.
+      Ihr könnt die Aufnahme jederzeit anhalten oder zurückspulen.
+    </p>
+
+
+    <!-- =====================================
+         PERSON 01 · ROMY SCHNEIDER
+         ===================================== -->
+
+    <section class="person">
+
+      <div class="image-wrap">
+
+        <img
+          src="Romy_Schneider.png"
+          alt="Person 01"
+        >
+
+        <div class="image-number">01</div>
+
+      </div>
+
+
+      <div class="content">
+
+        <div class="eyebrow">
+          Person 01
+        </div>
+
+        <h2>
+          Romy Schneider
+        </h2>
+
+        <p class="instruction">
+          Hört euch die Beschreibung an und ergänzt
+          die zehn Lücken im Text.
+        </p>
+
+
+        <div class="player">
+
+          <audio
+            src="Romy.mp3"
+            preload="metadata"
+          ></audio>
+
+
+          <div class="controls">
+
+            <button
+              class="back"
+              type="button"
+              aria-label="10 Sekunden zurück"
+            >
+              −10 s
+            </button>
+
+            <button
+              class="play"
+              type="button"
+            >
+              ▶ Hören
+            </button>
+
+            <button
+              class="forward"
+              type="button"
+              aria-label="10 Sekunden vor"
+            >
+              +10 s
+            </button>
+
+          </div>
+
+
+          <input
+            class="progress"
+            type="range"
+            min="0"
+            max="100"
+            step="0.1"
+            value="0"
+            aria-label="Audiofortschritt"
+          >
+
+
+          <div class="time">
+
+            <span class="current">
+              0:00
+            </span>
+
+            <span class="duration">
+              0:00
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="hint">
+          <strong>Tipp:</strong>
+          Achtet besonders auf Adjektive und ihre Endungen.
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================
+         PERSON 02 · GERT FRÖBE
+         ===================================== -->
+
+    <section class="person">
+
+      <div class="image-wrap">
+
+        <img
+          src="Gert_Fröbe.png"
+          alt="Person 02"
+        >
+
+        <div class="image-number">02</div>
+
+      </div>
+
+
+      <div class="content">
+
+        <div class="eyebrow">
+          Person 02
+        </div>
+
+        <h2>
+          Gert Fröbe
+        </h2>
+
+        <p class="instruction">
+          Hört euch die Beschreibung an und ergänzt
+          die zehn Lücken im Text.
+        </p>
+
+
+        <div class="player">
+
+          <audio
+            src="Gert.mp3"
+            preload="metadata"
+          ></audio>
+
+
+          <div class="controls">
+
+            <button
+              class="back"
+              type="button"
+              aria-label="10 Sekunden zurück"
+            >
+              −10 s
+            </button>
+
+            <button
+              class="play"
+              type="button"
+            >
+              ▶ Hören
+            </button>
+
+            <button
+              class="forward"
+              type="button"
+              aria-label="10 Sekunden vor"
+            >
+              +10 s
+            </button>
+
+          </div>
+
+
+          <input
+            class="progress"
+            type="range"
+            min="0"
+            max="100"
+            step="0.1"
+            value="0"
+            aria-label="Audiofortschritt"
+          >
+
+
+          <div class="time">
+
+            <span class="current">
+              0:00
+            </span>
+
+            <span class="duration">
+              0:00
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="hint">
+          <strong>Tipp:</strong>
+          Achtet besonders auf Adjektive und ihre Endungen.
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <script>
+
+    /* =========================================
+       AUDIO PLAYER
+       ========================================= */
+
+    const players =
+      document.querySelectorAll(".player");
+
+
+    players.forEach(player => {
+
+      const audio =
+        player.querySelector("audio");
+
+      const playButton =
+        player.querySelector(".play");
+
+      const backButton =
+        player.querySelector(".back");
+
+      const forwardButton =
+        player.querySelector(".forward");
+
+      const progress =
+        player.querySelector(".progress");
+
+      const current =
+        player.querySelector(".current");
+
+      const duration =
+        player.querySelector(".duration");
+
+
+      /* ---------------------------------------
+         ZEIT FORMATIEREN
+         --------------------------------------- */
+
+      function formatTime(seconds) {
+
+        if (!Number.isFinite(seconds)) {
+          return "0:00";
+        }
+
+        const minutes =
+          Math.floor(seconds / 60);
+
+        const remainingSeconds =
+          Math.floor(seconds % 60)
+            .toString()
+            .padStart(2, "0");
+
+        return `${minutes}:${remainingSeconds}`;
+      }
+
+
+      /* ---------------------------------------
+         PLAY / PAUSE
+         --------------------------------------- */
+
+      playButton.addEventListener(
+        "click",
+        () => {
+
+          if (audio.paused) {
+
+            /* Andere Aufnahme stoppen */
+
+            players.forEach(otherPlayer => {
+
+              const otherAudio =
+                otherPlayer.querySelector("audio");
+
+              if (otherAudio !== audio) {
+                otherAudio.pause();
+              }
+
+            });
+
+            audio.play();
+
+          } else {
+
+            audio.pause();
+
+          }
+
+        }
+      );
+
+
+      audio.addEventListener(
+        "play",
+        () => {
+
+          playButton.textContent =
+            "❚❚ Pause";
+
+        }
+      );
+
+
+      audio.addEventListener(
+        "pause",
+        () => {
+
+          playButton.textContent =
+            "▶ Hören";
+
+        }
+      );
+
+
+      /* ---------------------------------------
+         10 SEKUNDEN ZURÜCK
+         --------------------------------------- */
+
+      backButton.addEventListener(
+        "click",
+        () => {
+
+          audio.currentTime =
+            Math.max(
+              0,
+              audio.currentTime - 10
+            );
+
+        }
+      );
+
+
+      /* ---------------------------------------
+         10 SEKUNDEN VOR
+         --------------------------------------- */
+
+      forwardButton.addEventListener(
+        "click",
+        () => {
+
+          if (!Number.isFinite(audio.duration)) {
+            return;
+          }
+
+          audio.currentTime =
+            Math.min(
+              audio.duration,
+              audio.currentTime + 10
+            );
+
+        }
+      );
+
+
+      /* ---------------------------------------
+         AUDIOLÄNGE
+         --------------------------------------- */
+
+      audio.addEventListener(
+        "loadedmetadata",
+        () => {
+
+          duration.textContent =
+            formatTime(audio.duration);
+
+        }
+      );
+
+
+      /* ---------------------------------------
+         FORTSCHRITT AKTUALISIEREN
+         --------------------------------------- */
+
+      audio.addEventListener(
+        "timeupdate",
+        () => {
+
+          if (!Number.isFinite(audio.duration)) {
+            return;
+          }
+
+          progress.value =
+            (
+              audio.currentTime /
+              audio.duration
+            ) * 100;
+
+          current.textContent =
+            formatTime(audio.currentTime);
+
+        }
+      );
+
+
+      /* ---------------------------------------
+         IN AUDIO SPRINGEN
+         --------------------------------------- */
+
+      progress.addEventListener(
+        "input",
+        () => {
+
+          if (!Number.isFinite(audio.duration)) {
+            return;
+          }
+
+          audio.currentTime =
+            (
+              Number(progress.value) /
+              100
+            ) * audio.duration;
+
+        }
+      );
+
+
+      /* ---------------------------------------
+         ENDE
+         --------------------------------------- */
+
+      audio.addEventListener(
+        "ended",
+        () => {
+
+          playButton.textContent =
+            "▶ Hören";
+
+          progress.value = 0;
+
+          audio.currentTime = 0;
+
+          current.textContent =
+            "0:00";
+
+        }
+      );
+
+    });
+
+  </script>
+
+</body>
+
+</html>
